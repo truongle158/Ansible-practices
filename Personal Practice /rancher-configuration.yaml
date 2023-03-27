@@ -1,0 +1,22 @@
+nodes:
+  - address: 192.168.67.140
+    internal_address: 172.17.19.140
+    user: administrator
+    role: [controlplane, etcd]
+  - address: 192.168.67.143
+    internal_address: 172.17.19.143
+    user: administrator
+    role: [worker, etcd]
+ 
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 24h
+
+# Required for external TLS termination with
+# ingress-nginx v0.22+
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: "true"
